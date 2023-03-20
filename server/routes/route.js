@@ -3,7 +3,7 @@ const { express } = pkg;
 
 import { signupUser } from "../controller/user-controller.js";
 
-const router = pkg.Router()
+const router = express.Router;
 
 router.post('/signup',signupUser);
 
