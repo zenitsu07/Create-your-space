@@ -1,15 +1,14 @@
-import pkg from 'express';
-const { express } = pkg;
+import express from 'express'
 
 import { signupUser } from "../controller/user-controller.js";
 
-const router = express.Router;
+const router = express.Router();
 
+//.post(endpoint, )
 router.post('/signup',signupUser);
 
 export default router;
 
 //example = https://facebook.com/login -> here '/login' is API endpoint
-//File is createed to hadle the endpoints
-//Only for troutes
+//File is createed to hadle the endpoints, Only for routes
 //according to endpoints in routes, we decide whic API is to be called
