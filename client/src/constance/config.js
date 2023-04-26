@@ -28,8 +28,10 @@ export const APT_NOTIFICATION_MESSAGES = {
 //SAMPLE REQUEST
 //NEED SERVICE CALL : { url:'/', method:'POST/GET/PUT/DELETE' PARAMS:  true/false}
 
+//this sevice_URLS object will be responsible to handle all api calls
+
 export const SERVICE_URLS = {
-    userSignup :{
-        url: '/signup', method: 'POST'
-    }
+    userSignup :{ url: '/signup', method: 'POST'},
+
+    userLogin:{url:'/login',method:'POST'}
 }

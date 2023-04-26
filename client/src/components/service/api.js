@@ -6,6 +6,7 @@ import { APT_NOTIFICATION_MESSAGES ,SERVICE_URLS} from '../../constance/config';
 
 const API_URL = 'http://localhost:8000'//using local host as baseULR to axiosInstance
 
+//creating instanc with 1- baseurl, 2- timeout, 3- headersdefinin content-type
 const axiosInstance =  axios.create({
     baseURL: API_URL,
     timeout:100000,
@@ -13,7 +14,9 @@ const axiosInstance =  axios.create({
         "content-type": 'application/json'
     }
 })
+
 //hanndling the axios instance created 
+
 //AxiosIntercetors provide a way to modify and control the requests and responses that are sent and received by the application
 //interceptros.request (callbackfunction1, callbackfunction2)
 console.log(axiosInstance)
@@ -124,12 +127,14 @@ for(const [key,value] of Object.entries(SERVICE_URLS)){
                     showUploadProgress(percentageCompleted)
                 }
             },
+
             onDownloadProgress: function (progressEvent){
                 if(showDownloadProgress){
                     let percentageCompleted = Math.round((progressEvent.loaded*100) / progressEvent.total)
                     showDownloadProgress(percentageCompleted)
                 }
             },
+            
             })
 
         
