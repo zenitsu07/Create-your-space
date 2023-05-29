@@ -23,6 +23,7 @@ function Usercontroller(req, res, next) {
                 message: 'Invalid Token Format'
             })
         }
+        
         const decode = jwt.verify(token, SECRET_KEY);
         req.user = decode
         // next()
@@ -54,19 +55,19 @@ export default Usercontroller
 //SIGNUP API
 export const signupUser = async (request, response) =>{
 
-    try{
-        
-        const user = request.body;
+    try {
+        // const salt = await bcrypt.genSalt();
+        // const hashedPassword = await bcrypt.hash(request.body.password, salt);
+        const hashedPassword = await bcrypt.hash(request.body.password, 10);
 
-        //validate the user using user functin
+        const user = { username: request.body.username, name: request.body.name, password: hashedPassword }
+
         const newUser = new User(user);
-        //save the user
         await newUser.save();
-        
-        return response.status(200).json({msg:'signup successful'})
-    }
-    catch(error){
-        return response.status(500).json({msg: "Error while signup the user"})
+
+        return response.status(200).json({ msg: 'Signup successfull' });
+    } catch (error) {
+        return response.status(500).json({ msg: 'Error while signing up user' });
     }
 
 }
@@ -119,3 +120,10 @@ export const loginUser = async(request,response) => {
 
 }
 //these exports are then setup in router.js
+
+export const logoutUser = async (request, response) => {
+    const token = request.body.token;
+    await Token.deleteOne({ token: token });
+
+    response.status(204).json({ msg: 'logout successfull' });
+}
