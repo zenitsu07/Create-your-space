@@ -8,6 +8,10 @@ const router = express.Router();
 router.post('/signup',signupUser);
 router.post('/login',loginUser);
 
+router.get('login', async (req,res)=>{
+    res.status(200).json(users)
+})
+
 export default router;
 
 //example = https://facebook.com/login -> here '/login' is API endpoint

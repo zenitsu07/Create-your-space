@@ -1,13 +1,14 @@
 //calling api axios intersectors
 
 import axios from 'axios';
-import { APT_NOTIFICATION_MESSAGES ,SERVICE_URLS} from '../../constance/config';
+import { APT_NOTIFICATION_MESSAGES ,SERVICE_URLS} from '../../constants/config';
 
 
 const API_URL = 'http://localhost:8000'//using local host as baseULR to axiosInstance
 
 //creating instanc with 1- baseurl, 2- timeout, 3- headersdefinin content-type
 const axiosInstance =  axios.create({
+    
     baseURL: API_URL,
     timeout:100000,
     headers:{
@@ -52,6 +53,7 @@ axiosInstance.interceptors.response.use(
 //if failed=> return{ isFailure : true,  status:string, msg:String,code: int}
 // /
 const processResponse = (response) =>{
+    
     if(response?.status=== 200){
         return {isSuccess: true, data: response.data}
     }else{
@@ -106,6 +108,7 @@ const API = {};
 
 //below loop will insert keys into API object with differnect request methods and urls
 
+//To extract every method and rouer as key value pair
 for(const [key,value] of Object.entries(SERVICE_URLS)){
     
     //store a fucntion to API[key]
