@@ -2,7 +2,7 @@ import React from 'react'
 import {useState, useContext} from 'react';
  
 import { Box,TextField,Button,styled,Typography } from "@mui/material"
-import { DataContext } from '../../context/DataProvider.js';
+import { DataContext } from '../../context/DataProvider';
 
 import { useNavigate } from 'react-router-dom';
 import API from '../service/api';
@@ -81,7 +81,7 @@ const Error = styled(Typography)`
     font-weight : 600
 `
 
-const Login = ({isUserAuthenticated}) => {
+const Login = () => {
 
     const [account, toggleAccount] = useState("login")
     const [signup, setSignup] = useState(signUpInitialValues)
@@ -172,7 +172,6 @@ const Login = ({isUserAuthenticated}) => {
             setLogin(logInInitialValues)
             //navigate to home once login success
             navigate('/');
-            isUserAuthenticated(true);//if logined then true
 
         }else{  
             console.log('Login failed')

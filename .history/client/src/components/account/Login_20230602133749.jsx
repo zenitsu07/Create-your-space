@@ -2,7 +2,7 @@ import React from 'react'
 import {useState, useContext} from 'react';
  
 import { Box,TextField,Button,styled,Typography } from "@mui/material"
-import { DataContext } from '../../context/DataProvider.js';
+import { DataContext } from '../../context/DataProvider';
 
 import { useNavigate } from 'react-router-dom';
 import API from '../service/api';
@@ -81,7 +81,7 @@ const Error = styled(Typography)`
     font-weight : 600
 `
 
-const Login = ({isUserAuthenticated}) => {
+const Login = () => {
 
     const [account, toggleAccount] = useState("login")
     const [signup, setSignup] = useState(signUpInitialValues)
@@ -96,10 +96,8 @@ const Login = ({isUserAuthenticated}) => {
     //value gets stored globally for setAccount
     //We can use setAccount value in components
     const { setAccount } = useContext(DataContext)
-    console.log(DataContext)
 
     const navigate = useNavigate();
-
     // const onInputChange = (e) =>{ 
         
     //     console.log(e.target.name);//.name provides which componenet is triggering this fucntion
@@ -167,12 +165,9 @@ const Login = ({isUserAuthenticated}) => {
             sessionStorage.setItem('refreshToken', `Bearer ${response.data.refreshToken}`)
 
             //we get sessionStorage and we can use the session storage response data for user data fafter loginto user further for personalisation
-            setAccount({ name: response.data.name, username: response.data.username })            
+            setAccount({ username: response.data.username, name: response.data.name })            
 
-            setLogin(logInInitialValues)
-            //navigate to home once login success
             navigate('/');
-            isUserAuthenticated(true);//if logined then true
 
         }else{  
             console.log('Login failed')

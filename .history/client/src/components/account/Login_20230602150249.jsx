@@ -172,7 +172,6 @@ const Login = ({isUserAuthenticated}) => {
             setLogin(logInInitialValues)
             //navigate to home once login success
             navigate('/');
-            isUserAuthenticated(true);//if logined then true
 
         }else{  
             console.log('Login failed')

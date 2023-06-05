@@ -20,7 +20,7 @@ const axiosInstance =  axios.create({
 
 //AxiosIntercetors provide a way to modify and control the requests and responses that are sent and received by the application
 //interceptros.request (callbackfunction1, callbackfunction2)
-// console.log(axiosInstance)
+console.log(axiosInstance)
 
 axiosInstance.interceptors.request.use(
     function(config) {
