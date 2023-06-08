@@ -1,6 +1,8 @@
 import express from 'express'
 
 import { signupUser,loginUser } from "../controller/user-controller.js";
+import { uploadImage, getImage } from '../controller/image-controller.js';
+import upload from '../utils/upload.js';
 
 const router = express.Router();
 
@@ -12,6 +14,9 @@ router.get('login', async (req,res)=>{
     res.status(200).json(users)
 })
 
+//call middlware for single file upload to mongodb
+router.post('/file/upload', upload.single('file') ,uploadImage)
+router.get('file/:filename', getImage);
 export default router;
 
 //example = https://facebook.com/login -> here '/login' is API endpoint

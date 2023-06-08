@@ -9,6 +9,8 @@ import DataProvider, { DataContext } from './context/DataProvider'
 
 import './App.css';
 import Banner from './components/banner/banner';
+import Categories from './components/home/Categories';
+import CreatePost from './components/create/CreatePost';
 
 const PrivateRoute = ({isAuthenticated}, ...props) =>{
   return isAuthenticated
@@ -31,15 +33,39 @@ function App() {
           <BrowserRouter context = {DataContext}>
 
             <div style = {{marginTop: 64}}>
-            <Banner />
+            
               <Routes>
                   <Route path='/login' element = {<Login isUserAuthenticated = {isUserAuthenticated} /> } />
                   
                   //send to privateRoute
-                  <Route path = '/' element ={<PrivateRoute isAuthenticated = {isAuthenticated} />} >
-                    //If user Authenticated then user is sent to Outlook ie.e the child components below
-                    <Route path='/' element = { <Home /> } />  
-                  </Route> 
+                  //Home path will redirect to PrivateRoute if loggedin else to '/login' path
+                  {/* <Route path = '/' element ={<PrivateRoute isAuthenticated = {isAuthenticated} />} >
+                    </Route>  */}
+                  //If user Authenticated then user is sent to Outlook ie.e the child components below
+                    <Route path='/' element = { 
+    
+                        <div>
+                          {/* using components to display while login still contain bugs */}
+                          
+                          <Home />
+                          {/* use for privateRouting when fixe errors in logging in and navigating  */}
+                          
+                        </div>
+                        
+                    } />  
+
+                    {/* Once fixed login bugs uncomment below */
+                      /* <Route path = '/' element ={<PrivateRoute isAuthenticated = {isAuthenticated} />} >
+                    </Route>  */}
+
+                    <Route path='/create'     
+                      element = {
+                        <>
+                          <Header />
+                          <CreatePost />
+                        </>
+                      }
+                    />
                   
               </Routes>
 

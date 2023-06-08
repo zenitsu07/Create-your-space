@@ -36,4 +36,6 @@ export const SERVICE_URLS = {
 
     userLogin:{ url: '/login',method: 'POST'},
     // userLogin: {url:'/login', method: 'GET'}
+
+    uploadFile:{url: '/file/upload', method:'POST'}
 }

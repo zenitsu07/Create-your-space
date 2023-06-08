@@ -31,3 +31,10 @@ NEXT_STEP-> NOW to send the useraccoutn Details to user , We have to send setAcc
 LOGIN->HOME
 
 
+For image uoliad create api in cofig.js and use API from servcie calls 
+
+TO post image to mongodb
+create utils-> upload.js which act as middleware for the post ethod route of fileUpload in route.js
+
+Used multer-gridfs-storage -> to store uploaded files directly to mongodb
+
