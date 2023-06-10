@@ -2,13 +2,13 @@ import { request, response } from "express"
 import mongoose ,{ mongo }  from "mongoose"
 import grid from 'gridfs-stream'
 
-
-const url = 'http://localhost:8000/'
+const url = 'http://localhost:8000'
 
 let gfs,gridfsBucket ;
 const conn = mongoose.connection;
 
 // we will need to sream pictures on bucket named fs
+
 conn.once('open', ()=>{
     
     gridfsBucket =  new mongoose.mongo.GridFSBucket(conn.db, {
@@ -26,6 +26,7 @@ export const uploadImage = (req,res) =>{
     }
 
     console.log(req.file)
+
     const imageUrl = `${url}/file/${req.file.filename}`
 
      res.status(200).json(imageUrl);
@@ -36,20 +37,40 @@ export const uploadImage = (req,res) =>{
 
 //Now to get that image from mongodb make a route for get request
 
-export const getImage = async (request, response) =>{
+// export const getImage = async (request, response) => {
 
-    try{
+//     try{
 
-        const file = await gfs.files.findOne({filename: request.params.filename})
+//         const file = await gfs.files.findOne({ filename: request.params.filename })
 
-        //to dowload and stream
-        const readStream = gridfsBucket.openDownloadStream(file._id);
-        readStream.pipe(response);
+//         //to dowload and stream
+//         const readStream = gridfsBucket.openDownloadStream(file._id);
+//         readStream.pipe(response);
 
-    }catch(error){
-            return response.status(500).json({msg: error.message})
+//     }
+//     catch(error){
+
+//         return response.status(500).json({msg: error.message})
+    
+//     }
+
+// }
+
+export const getImage = async (request, response) => {
+    try {
+      const file = await conn
+        .db.collection("fs")
+        .findOne({ filename: request.params.filename });
+  
+      if (!file) {
+        return response.status(404).json({ msg: "File not found" });
+      }
+  
+      const readStream = gridfsBucket.openDownloadStream(file._id);
+      readStream.pipe(response);
+    } catch (error) {
+      return response.status(500).json({ msg: error.message });
     }
-
-}
+  };
 
 //Since iage is in streams form import package gridfs-stream

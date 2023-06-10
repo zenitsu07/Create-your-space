@@ -13,10 +13,10 @@ router.post('/login',loginUser);
 router.get('login', async (req,res)=>{
     res.status(200).json(users)
 })
-
+     
 //call middlware for single file upload to mongodb
 router.post('/file/upload', upload.single('file') ,uploadImage)
-router.get('file/:filename', getImage);
+router.get('/file/:filename', getImage);
 export default router;
 
 //example = https://facebook.com/login -> here '/login' is API endpoint

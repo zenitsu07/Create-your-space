@@ -12,10 +12,11 @@ const storage = new GridFsStorage({
 
     url: `mongodb://${username}:${password}@ac-khixnvr-shard-00-00.mmh7usl.mongodb.net:27017,ac-khixnvr-shard-00-01.mmh7usl.mongodb.net:27017,ac-khixnvr-shard-00-02.mmh7usl.mongodb.net:27017/?ssl=true&replicaSet=atlas-7nj9l0-shard-0&authSource=admin&retryWrites=true&w=majority`,
     options: { useNewUrlParser: true, useUnifiedTopology: true },
+    
     file: (req, file) => {
-    const match = ["image/png", "image/jpg"];
+    const match = ["image/png", "image/jpg", "image/jpeg", "image/gif", "image/webp"];
 
-    if (match.indexOf(file.memetype) === -1) {
+    if (match.indexOf(file.memeType) === -1) {
       return `${Date.now()}-blog-${file.originalname}`;
     }
 

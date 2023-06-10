@@ -5,12 +5,12 @@ import {BrowserRouter, Routes, Route, Navigate, Outlet} from 'react-router-dom'
 import Login from './components/account/Login';
 import Home from './components/home/Home';
 import Header from './components/header/Header';
-import DataProvider, { DataContext } from './context/DataProvider'
+import  { DataContext } from './context/DataProvider'
 
 import './App.css';
-import Banner from './components/banner/banner';
-import Categories from './components/home/Categories';
 import CreatePost from './components/create/CreatePost';
+import About from './components/about/About';
+import Contact from './components/contact/Contact';
 
 const PrivateRoute = ({isAuthenticated}, ...props) =>{
   return isAuthenticated
@@ -24,7 +24,7 @@ const PrivateRoute = ({isAuthenticated}, ...props) =>{
 }
 
 
-function App() {
+function App(){
 
   const [isAuthenticated, isUserAuthenticated] = useState(false);
 
@@ -35,6 +35,7 @@ function App() {
             <div style = {{marginTop: 64}}>
             
               <Routes>
+
                   <Route path='/login' element = {<Login isUserAuthenticated = {isUserAuthenticated} /> } />
                   
                   //send to privateRoute
@@ -42,12 +43,12 @@ function App() {
                   {/* <Route path = '/' element ={<PrivateRoute isAuthenticated = {isAuthenticated} />} >
                     </Route>  */}
                   //If user Authenticated then user is sent to Outlook ie.e the child components below
-                    <Route path='/' element = { 
+                    
+                  <Route path='/' element = { 
     
                         <div>
                           {/* using components to display while login still contain bugs */}
-                          
-                          <Home />
+                            <Home />
                           {/* use for privateRouting when fixe errors in logging in and navigating  */}
                           
                         </div>
@@ -58,15 +59,26 @@ function App() {
                       /* <Route path = '/' element ={<PrivateRoute isAuthenticated = {isAuthenticated} />} >
                     </Route>  */}
 
-                    <Route path='/create'     
-                      element = {
+                    <Route path='/create' element = {
                         <>
                           <Header />
                           <CreatePost />
                         </>
                       }
                     />
+
+                    {/* <Route path='/about' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
+                      <Route path='/about' element={<About />} />
+                    </Route> */}
                   
+                    <Route path = '/about'>
+                        <Route path='/about' element = {<About />} />
+                    </Route>
+
+                    <Route path='/contact' >
+                        <Route path='/contact' element={<Contact />} />
+                    </Route>
+
               </Routes>
 
             </div>
