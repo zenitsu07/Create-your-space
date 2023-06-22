@@ -9,7 +9,7 @@ const conn = mongoose.connection;
 
 // we will need to sream pictures on bucket named fs
 
-conn.once('open', ()=>{
+conn.once('open', ()=> {
     
     gridfsBucket =  new mongoose.mongo.GridFSBucket(conn.db, {
         bucketName: 'fs'
@@ -17,6 +17,7 @@ conn.once('open', ()=>{
 
     gfs = grid(conn.db, mongoose.mongo)
     gfs.collection('fs');
+
 })
 
 export const uploadImage = (req,res) =>{
@@ -29,7 +30,7 @@ export const uploadImage = (req,res) =>{
 
     const imageUrl = `${url}/file/${req.file.filename}`
 
-     res.status(200).json(imageUrl);
+     res.status(200).json(imageUrl);    
 
 }
 
@@ -57,6 +58,7 @@ export const uploadImage = (req,res) =>{
 // }
 
 export const getImage = async (request, response) => {
+    
     try {
       const file = await conn
         .db.collection("fs")
