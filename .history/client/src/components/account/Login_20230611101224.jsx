@@ -116,14 +116,12 @@ const Login = ({isUserAuthenticated}) => {
     // }
 
     const onInputChange = (e) => {
-
         const { name, value } = e.target;
         
         setSignup({
           ...signup,
           [name]: value,
         });
-
       };
       
       const onValueChange = (e) => {

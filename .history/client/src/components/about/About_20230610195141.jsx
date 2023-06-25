@@ -1,7 +1,6 @@
 
 import { Box, styled, Typography, Link } from '@mui/material';
 import { GitHub, Instagram, Email } from '@mui/icons-material';
-import Header  from '../header/Header';
 
 const Banner = styled(Box)`
     background-image: url(https://www.wallpapertip.com/wmimgs/23-236943_us-wallpaper-for-website.jpg);
@@ -20,7 +19,7 @@ const Wrapper = styled(Box)`
 
 const Flex = styled(Typography)`
     
-paddingTop: 5rem;
+paddingTop: 5em;
     display: flex;
     flex-direction: row;
     color: #878787;
@@ -37,7 +36,6 @@ const About = () => {
     return (
 
         <Box>
-            <Header />
             <Banner/>
             <Wrapper>
 

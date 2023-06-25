@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+//enables routing for the client side of app
 import {BrowserRouter, Routes, Route, Navigate, Outlet} from 'react-router-dom'
 
 import  { DataContext } from './context/DataProvider'
@@ -15,7 +16,6 @@ import Header from './components/header/Header';
 
 //PrivateRoute
 const PrivateRoute = ({isAuthenticated}, ...props) =>{
-
   return isAuthenticated
   ?<>
     <Header />
@@ -24,7 +24,6 @@ const PrivateRoute = ({isAuthenticated}, ...props) =>{
   :
   //If not loggedin send user back to login route
   <Navigate replace to='/login' />
-  
 }
 
 

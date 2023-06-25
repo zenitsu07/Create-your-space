@@ -11,12 +11,10 @@ const DataProvider = ({children}) =>{
     
     return(
 
-        <DataContext.Provider value={
-            {
-                account,
-                setAccount
-            }
-        }>
+        <DataContext.Provider value={{
+            account,
+            setAccount
+        }}>
 
             {children}
 

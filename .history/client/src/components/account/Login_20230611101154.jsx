@@ -116,20 +116,18 @@ const Login = ({isUserAuthenticated}) => {
     // }
 
     const onInputChange = (e) => {
-
         const { name, value } = e.target;
         
         setSignup({
           ...signup,
           [name]: value,
         });
-
       };
       
       const onValueChange = (e) => {
         const { name, value } = e.target;
         
-        setLogin({...login,name: value } )
+        setLogin({...login, [e.target.name]: [e.target.value] } )
       };
 
     const signupUser = async () =>{

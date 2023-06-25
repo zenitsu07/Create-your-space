@@ -1,7 +1,6 @@
 
 import { Box, styled, Typography, Link } from '@mui/material';
 import { GitHub, Instagram, Email } from '@mui/icons-material';
-import Header  from '../header/Header';
 
 const Banner = styled(Box)`
     background-image: url(https://www.wallpapertip.com/wmimgs/23-236943_us-wallpaper-for-website.jpg);
@@ -20,7 +19,7 @@ const Wrapper = styled(Box)`
 
 const Flex = styled(Typography)`
     
-paddingTop: 5rem;
+paddingTop: 5em;
     display: flex;
     flex-direction: row;
     color: #878787;
@@ -37,7 +36,6 @@ const About = () => {
     return (
 
         <Box>
-            <Header />
             <Banner/>
             <Wrapper>
 
@@ -51,14 +49,14 @@ At Create Your Space, we believe that everyone has a story to tell, and our goal
 
                 </Flex>
 
-                {/* <Text variant="h5">
+                <Text variant="h5">
 
                     This app revolves around our users, who are willing to let themselves be open to the idea of creating their own virtual presence
                     
                     We allow our users to explore their  own creativity or deep dive into some amazing works out there.
 
                     
-                </Text> */}
+                </Text>
                 <Text variant="h5">
                     Need something built or simply want to have chat? 
 

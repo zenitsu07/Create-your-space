@@ -2,7 +2,7 @@ import React from 'react'
 import {useState, useContext} from 'react';
  
 import { Box,TextField,Button,styled,Typography } from "@mui/material"
-import { DataContext } from '../../context/DataProvider';
+import { DataContext } from '../../context/DataProvider.js';
 
 import { useNavigate } from 'react-router-dom';
 import API from '../service/api';
@@ -116,20 +116,18 @@ const Login = ({isUserAuthenticated}) => {
     // }
 
     const onInputChange = (e) => {
-
         const { name, value } = e.target;
         
         setSignup({
           ...signup,
           [name]: value,
         });
-
       };
       
       const onValueChange = (e) => {
         const { name, value } = e.target;
         
-        setLogin({...login,name: value } )
+        setLogin({...login, [e.target.name]: [e.target.value] } )
       };
 
     const signupUser = async () =>{
@@ -156,7 +154,7 @@ const Login = ({isUserAuthenticated}) => {
         //Next steps -> creating an api call for login as userLogin in SERVICE_URLS of config.js file
         
         let response  = await API.userLogin(login);
-
+        
         if(response.isSuccess) {
             
             setError("");
@@ -216,7 +214,7 @@ const Login = ({isUserAuthenticated}) => {
 
                         <SignUpButton variant="outlined"  onClick={() => signupUser()}>SignUp</SignUpButton>
                         <TextStyle style={{textAlign:'center'}}>Or</TextStyle>
-                        <LogInButton variant="contained" onClick={() => toggleSignup() }> Already have an account?</LogInButton>
+                        <LogInButton variant="contained" onClick={() => toggleSignup() }  > Already have an account?</LogInButton>
             
                     </Wrapper>
                 }

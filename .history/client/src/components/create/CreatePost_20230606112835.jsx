@@ -60,7 +60,7 @@ const CreatePost = () => {
     const [post, setPost] = useState(initialPost);
     const [file,setFile] = useState()
 
-    const {setAccount} = useContext(DataContext);
+    const {account} = useContext(DataContext);
 
     const url =  post.picture?post.picture: 'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
 
@@ -104,6 +104,7 @@ const CreatePost = () => {
 
             <StyledFormControl>
 
+                
                 <label htmlFor="fileInput">
                     <Add  fontSize='large' color="action"/>
                 </label>
@@ -128,6 +129,7 @@ const CreatePost = () => {
                     onChange={(e) => handleChange(e)}
 
                 />
+
 
         </Container>
   )
