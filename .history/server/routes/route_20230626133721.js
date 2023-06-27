@@ -5,7 +5,6 @@ import { uploadImage, getImage } from '../controller/image-controller.js';
 import upload from '../utils/upload.js';
 import { createPost } from '../controller/post-controller.js';
 import { authenticateToken } from '../controller/jwt-controller.js';
-
 const router = express.Router();
 
 //.post(endpoint, )

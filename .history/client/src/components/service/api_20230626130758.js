@@ -13,7 +13,6 @@ const axiosInstance =  axios.create({
     timeout:100000,
     headers:{
         "content-type": 'application/json'
-
     }
 })
 
@@ -121,18 +120,12 @@ for(const [key,value] of Object.entries(SERVICE_URLS)){
             url:value.url,
             data: body,
             responeType: value.responeType,
-            
-            headers:{
-                authorization: getAccessToken()
-            },
 
             onUploadProgress: function (progressEvent){
-
                 if(showUploadProgress){
                     let percentageCompleted = Math.round((progressEvent.loaded*100) / progressEvent.total)
                     showUploadProgress(percentageCompleted)
                 }
-
             },
 
             onDownloadProgress: function (progressEvent){

@@ -5,7 +5,7 @@ import { AddCircle as Add } from '@mui/icons-material';
 import { useNavigate, useLocation, Navigate } from 'react-router-dom';
 
 import { DataContext } from '../../context/DataProvider';
-import API from '../service/api';
+import {API} from '../service/api';
 
 const Container = styled(Box)(({ theme }) => ({
     margin: '50px 100px',
@@ -78,23 +78,19 @@ const CreatePost = () => {
                 const response = await API.uploadFile(data);
                 response.isSuccess== true? console.log("received upload"):console.log("failed to fetch");
                 post.picture = response.data;
-                setPost({ ...post, picture: response.data })
             }
         }
 
         getImage();
+
         post.categories = location.search?.split('=')[1] || 'All';
         // post.username = account.username;
 
     }, [file]);
 
     const savePost = async () =>{
-
         const response =  await API.createPost(post);
-        response.isSuccess== true? console.log("received upload"):console.log("failed to fetch");
-                
         if(response.isSuccess)navigate('/');
-
     }
 
     const handleChange = (e) =>{

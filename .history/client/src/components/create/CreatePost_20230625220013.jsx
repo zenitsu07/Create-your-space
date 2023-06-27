@@ -76,29 +76,24 @@ const CreatePost = () => {
               
                 // api call
                 const response = await API.uploadFile(data);
-                response.isSuccess== true? console.log("received upload"):console.log("failed to fetch");
                 post.picture = response.data;
-                setPost({ ...post, picture: response.data })
             }
         }
 
         getImage();
+
         post.categories = location.search?.split('=')[1] || 'All';
         // post.username = account.username;
 
     }, [file]);
 
     const savePost = async () =>{
-
         const response =  await API.createPost(post);
-        response.isSuccess== true? console.log("received upload"):console.log("failed to fetch");
-                
-        if(response.isSuccess)navigate('/');
-
+        if(respose.isSuccess)navigate('/');
     }
 
     const handleChange = (e) =>{
-        setPost({...post, [e.target.name]: e.target.value})
+            setPost({...post, [e.target.name]: e.target.value})
     }
 
   return (
@@ -116,24 +111,23 @@ const CreatePost = () => {
                 
                     type = "file"
                     id="fileInput"
-                    style = {{display :"none"}}
+                    style = {{display : 'none'}}
                     onChange={(e) => setFile(e.target.files[0])}
-                
                 />
 
                 <InputTextField onChange={(e) => handleChange(e)} name='title' placeholder="Title" />
-                <Button onClick={() => savePost()} variant="contained" color="primary">Publish</Button> 
+                {/* <Button onClick={() => savePost()} variant="contained" color="primary">Publish</Button> */}
           
-            </StyledFormControl>
+          
+                </StyledFormControl>
+                <Textarea
 
-            <Textarea
+                    rowsmin={5}
+                    placeholder="Tell your story..."
+                    name='description'
+                    onChange={(e) => handleChange(e)}
 
-                rowsMin={5}
-                placeholder="Tell your story..."
-                name='description'
-                onChange={(e) => handleChange(e)}
-
-            />
+                />
 
         </Container>
   )

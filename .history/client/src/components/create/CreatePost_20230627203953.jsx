@@ -77,7 +77,7 @@ const CreatePost = () => {
                 // api call
                 const response = await API.uploadFile(data);
                 response.isSuccess== true? console.log("received upload"):console.log("failed to fetch");
-                post.picture = response.data;
+                // post.picture = response.data;
                 setPost({ ...post, picture: response.data })
             }
         }
@@ -89,12 +89,10 @@ const CreatePost = () => {
     }, [file]);
 
     const savePost = async () =>{
-
         const response =  await API.createPost(post);
         response.isSuccess== true? console.log("received upload"):console.log("failed to fetch");
                 
         if(response.isSuccess)navigate('/');
-
     }
 
     const handleChange = (e) =>{

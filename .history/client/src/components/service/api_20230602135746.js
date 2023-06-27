@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import { APT_NOTIFICATION_MESSAGES ,SERVICE_URLS} from '../../constants/config';
-import { getAccessToken } from '../../utils/common-utils';
+
 
 const API_URL = 'http://localhost:8000'//using local host as baseULR to axiosInstance
 
@@ -13,7 +13,6 @@ const axiosInstance =  axios.create({
     timeout:100000,
     headers:{
         "content-type": 'application/json'
-
     }
 })
 
@@ -121,18 +120,12 @@ for(const [key,value] of Object.entries(SERVICE_URLS)){
             url:value.url,
             data: body,
             responeType: value.responeType,
-            
-            headers:{
-                authorization: getAccessToken()
-            },
 
             onUploadProgress: function (progressEvent){
-
                 if(showUploadProgress){
                     let percentageCompleted = Math.round((progressEvent.loaded*100) / progressEvent.total)
                     showUploadProgress(percentageCompleted)
                 }
-
             },
 
             onDownloadProgress: function (progressEvent){

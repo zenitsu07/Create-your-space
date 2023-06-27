@@ -40,7 +40,7 @@ export const uploadImage = (req,res) =>{
 // export const getImage = async (request, response) => {
 
 //     try{
- 
+
 //         const file = await gfs.files.findOne({ filename: request.params.filename })
 
 //         //to dowload and stream
@@ -60,7 +60,7 @@ export const getImage = async (request, response) => {
     
     try {
       const file = await conn
-        .db.collection("fs.files")
+        .db.collection("fs")
         .findOne({ filename: request.params.filename });
   
       if (!file) {
@@ -69,7 +69,6 @@ export const getImage = async (request, response) => {
   
       const readStream = gridfsBucket.openDownloadStream(file._id);
       readStream.pipe(response);
-
     } catch (error) {
       return response.status(500).json({ msg: error.message });
     }

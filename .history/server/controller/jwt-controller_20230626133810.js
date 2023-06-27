@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
-import Token from '../model/token.js'
+import Token from '../model/token'
 
 dotenv.config();
 
@@ -23,7 +23,6 @@ export const authenticateToken = (req, res, next)=>{
         }
 
         req.user = user;
-        //next function is called to tranfer the code of executor from middleware to api i.e.e createPost in this case
         next();
     })
 

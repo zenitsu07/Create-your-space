@@ -121,18 +121,15 @@ for(const [key,value] of Object.entries(SERVICE_URLS)){
             url:value.url,
             data: body,
             responeType: value.responeType,
-            
             headers:{
                 authorization: getAccessToken()
             },
 
             onUploadProgress: function (progressEvent){
-
                 if(showUploadProgress){
                     let percentageCompleted = Math.round((progressEvent.loaded*100) / progressEvent.total)
                     showUploadProgress(percentageCompleted)
                 }
-
             },
 
             onDownloadProgress: function (progressEvent){
