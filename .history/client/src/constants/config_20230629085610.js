@@ -40,5 +40,4 @@ export const SERVICE_URLS = {
     uploadFile:{url: '/file/upload', method:'POST'},
 
     createPost: { url: '/create', method: 'POST' }
-
-} 
+}

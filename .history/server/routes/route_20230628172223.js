@@ -20,8 +20,7 @@ router.get('login', async (req,res)=>{
 router.post('/file/upload', upload.single('file') ,uploadImage)
 router.get('/file/:filename', getImage);
 // router.post('/create',authenticateToken,  createPost)
-router.post('/create', createPost)
-//calls for post method for /create endpoint 
+router.post('create', createPost)
 export default router;
 
 //example = https://facebook.com/login -> here '/login' is API endpoint

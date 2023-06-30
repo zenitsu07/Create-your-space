@@ -5,7 +5,7 @@ import { AddCircle as Add } from '@mui/icons-material';
 import { useNavigate, useLocation, Navigate } from 'react-router-dom';
 
 import { DataContext } from '../../context/DataProvider';
-import API from '../../service/api';
+import API from '../service/api';
 
 const Container = styled(Box)(({ theme }) => ({
     margin: '50px 100px',
@@ -78,10 +78,7 @@ const CreatePost = () => {
                 const response = await API.uploadFile(data);
                 response.isSuccess === true? console.log("received upload"):console.log("failed to fetch");
                 post.picture = response.data;
-                //changes
-                const updatedPost = { ...post, picture: response.data };
-                setPost(updatedPost);
-
+                setPost({ ...post, picture: response.data })
             }
         }
 
@@ -89,9 +86,8 @@ const CreatePost = () => {
         post.categories = location.search?.split('=')[1] || 'All';
         // post.username = account.username;
 
-    }, [file]);
     // }, [file,post]);
-    
+    }, [file]);
 
     const savePost = async () =>{
 
@@ -133,7 +129,7 @@ const CreatePost = () => {
 
             <Textarea
 
-                rowsmin={5}
+                rowsMin={5}
                 placeholder="Tell your story..."
                 name='description'
                 onChange={(e) => handleChange(e)}

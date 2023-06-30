@@ -8,7 +8,7 @@ export const createPost = async (request, response) => {
         response.status(200).json('Post saved successfully');    } 
     
         catch (error) {
-            response.status(500).json({ message: 'Error saving the post' });
+        response.status(500).json(error);
     }
 }
 

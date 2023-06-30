@@ -133,7 +133,7 @@ const CreatePost = () => {
 
             <Textarea
 
-                rowsmin={5}
+                rowsMin={5}
                 placeholder="Tell your story..."
                 name='description'
                 onChange={(e) => handleChange(e)}

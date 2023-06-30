@@ -5,7 +5,7 @@ import { Box,TextField,Button,styled,Typography } from "@mui/material"
 import { DataContext } from '../../context/DataProvider';
 
 import { useNavigate } from 'react-router-dom';
-import API from '../../service/api';
+import API from '../service/api';
 
 const Component = styled(Box)`
     
@@ -175,10 +175,8 @@ const Login = ({isUserAuthenticated}) => {
             isUserAuthenticated(true);//if logined then true
 
         }else{  
-
             console.log('Login failed')
             setError('Something went wrong, Please try again later')
-        
         }
 
     }
