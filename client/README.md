@@ -68,3 +68,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+FOr categories=>
+1-> use hook useSearchParams which foloows changes in cognfig.js -> service/api.js=>params:true
+2->TYPE check in axios instance -> TYPE: getType( value,body)
+
+-> refer to common-utils for fetTye functinwhich returns body for params, then use config for gettign params set key of config.params key = config.TYPE.params
