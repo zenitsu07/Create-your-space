@@ -46,8 +46,8 @@ const Post = ({ post }) => {
     // const url = post.picture ? post.picture : 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80';
     const url = post.picture ? post.picture :"https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80"
     // let category = post.categories || "All"; // Check if post.categories is present, otherwise assign an empty string
-    let category = post.cat
-    category = category.toLowerCase().includes('null') ? 'All' : category; // Check if category contains the keyword 'null', if so, set it to 'All'
+    let category = post.category
+    // category = category.toLowerCase().includes('null') ? 'All' : category; // Check if category contains the keyword 'null', if so, set it to 'All'
  
     const addEllipsis = (str, limit) => {
         return str.length > limit ? str.substring(0, limit) + '...' : str;
