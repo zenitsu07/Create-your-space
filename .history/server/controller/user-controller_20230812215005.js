@@ -41,7 +41,7 @@ export const loginUser = async(request,response) => {
     //not is json format convert using to JSON this user variable contains all values of user object found b User.finOne function in mongodb atlas
     let user = await User.findOne({ username: request.body.username });
     if(!user){
-        return response.status(400).json({msg:"Error username not found"})
+        return response.status(400).json({msg:"Error username n ot found"})
     }
     //use try and catch method to handle errors if user exists in db bcoz response still depends on cloud database
     try{
@@ -53,10 +53,8 @@ export const loginUser = async(request,response) => {
 
             //accesstoekn is temporary avaibale set usually for 15 minutes
             //jstsign(body,secret key) create usign cypto 
-
             const accessToken = jwt.sign(user.toJSON(), process.env.ACCESS_SECRET_KEY , {expiresIn: '15m'});
             const refreshToken = jwt.sign(user.toJSON(), process.env.REFRESH_SECRET_KEY)
-            // console.log(accessToken, refreshToken)
             //we will create new access token with refresh token after 15m everytimes
 
             const newToken = new Token({ token: refreshToken})

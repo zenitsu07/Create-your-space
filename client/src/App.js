@@ -50,7 +50,7 @@ function App(){
     
                         <div>
                           {/* using components to display while login still contain bugs */}
-                            <Home />
+                          <PrivateRoute isAuthenticated = {isAuthenticated} />
                           {/* use for privateRouting when fixe errors in logging in and navigating  */}
                           
                         </div>

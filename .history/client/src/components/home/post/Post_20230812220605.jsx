@@ -3,14 +3,14 @@ import { styled, Box, Typography } from '@mui/material';
 const Container = styled(Box)`
     border: 1px solid #d3cede;
     border-radius: 10px;
-    margin: 10px;
+    margin: 15px;
     display: flex;
     align-items: center;
     flex-direction: column;
-    // change
     flex-wrap: wrap;
+    width: 350px;
     height: 350px;
-     & > p {
+    & > img, & > p {
         padding: 0 5px 5px 5px;
     }
     &:hover {
@@ -55,8 +55,8 @@ const Post = ({ post }) => {
         return str.length > limit ? str.substring(0, limit) + '...' : str;
     } 
 
-    const handleClick = ((e) =>{
-        console.log(e._id)
+    const handleClick = ((e)=>{
+
     })
 
     return (

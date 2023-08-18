@@ -55,8 +55,8 @@ const Post = ({ post }) => {
         return str.length > limit ? str.substring(0, limit) + '...' : str;
     } 
 
-    const handleClick = ((e) =>{
-        console.log(e._id)
+    const handleClick = ((e)=>{
+
     })
 
     return (

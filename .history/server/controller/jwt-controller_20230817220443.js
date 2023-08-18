@@ -59,55 +59,36 @@
 //     })
 
 // }
+const loginUser  = async () => {
 
+    //Next steps -> creating an api call for login as userLogin in SERVICE_URLS of config.js file
+    console.log(login)
+    let response  = await API.userLogin(login);
 
+    if(response.isSuccess) {
+        
+        showError("");
+        setLogin(logInInitialValues)
 
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
+        //accesstoken and response.data comes while login 
+        sessionStorage.setItem('accesstoken', `Bearer ${response.data.accessToken}`);
+        sessionStorage.setItem('refreshToken', `Bearer ${response.data.refreshToken}`)
 
-import Token from '../model/token.js';
+        //we get sessionStorage and we can use the session storage response data for user data fafter loginto user further for personalisation
+        setAccount({ name: response.data.name, username: response.data.username })               
+        
+        isUserAuthenticated(true);//if logined then true
+        setLogin(logInInitialValues)
+        //navigate to home once login success
+        navigate('/');
 
-dotenv.config();
+    }else{  
 
-export const authenticateToken = (request, response, next) => {
-    const authHeader = request.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
+        console.log('Login failed')
+        showError('Something went wrong, Please try again later')
     
-    if (token == null) {
-        return response.status(401).json({ msg: 'token is missing' });
     }
 
-    jwt.verify(token, process.env.ACCESS_SECRET_KEY, (error, user) => {
-        if (error) {
-            return response.status(403).json({ msg: 'invalid token' })
-        }
-
-        request.user = user;
-        next();
-    })
 }
 
-export const createNewToken = async (request, response) => {
-    const refreshToken = request.body.token.split(' ')[1];
 
-    if (!refreshToken) {
-        return response.status(401).json({ msg: 'Refresh token is missing' })
-    }
-
-    const token = await Token.findOne({ token: refreshToken });
-
-    if (!token) {
-        return response.status(404).json({ msg: 'Refresh token is not valid'});
-    }
-
-    jwt.verify(token.token, process.env.REFRESH_SECRET_KEY, (error, user) => {
-        if (error) {
-            response.status(500).json({ msg: 'invalid refresh token'});
-        }
-        const accessToken = jwt.sign(user, process.env.ACCESS_SECRET_KEY, { expiresIn: '15m'});
-
-        return response.status(200).json({ accessToken: accessToken })
-    })
-
-
-}

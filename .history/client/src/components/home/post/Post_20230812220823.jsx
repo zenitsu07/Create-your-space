@@ -10,8 +10,8 @@ const Container = styled(Box)`
     // change
     flex-wrap: wrap;
     height: 350px;
-     & > p {
-        padding: 0 5px 5px 5px;
+    & > img, & > p {
+        // padding: 0 5px 5px 5px;
     }
     &:hover {
         border-color: #000;
@@ -55,8 +55,8 @@ const Post = ({ post }) => {
         return str.length > limit ? str.substring(0, limit) + '...' : str;
     } 
 
-    const handleClick = ((e) =>{
-        console.log(e._id)
+    const handleClick = ((e)=>{
+
     })
 
     return (

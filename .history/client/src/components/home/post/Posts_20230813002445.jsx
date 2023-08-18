@@ -5,13 +5,11 @@ import Post from './Post';
 import {Grid,Link, styled, Box, TextareaAutosize,  Typography  } from '@mui/material';
 
 const Container = styled(Box)(({ theme }) => ({
-
     margin: '50px 100px',
     width:'100%',
     [theme.breakpoints.down('md')]: {
         margin: 0
     }
-
 }));
 
 const Image = styled('img')({
@@ -39,7 +37,6 @@ const Textarea = styled(TextareaAutosize)`
     const category = searchParams.get('category')
     
     useEffect(() =>{
-
         const fetchData = async () =>{
             const response  = await API.getAllPosts();
 
@@ -50,8 +47,7 @@ const Textarea = styled(TextareaAutosize)`
             }
         }
         fetchData();
-    },[category]);
-
+    },[]);
 
   return (
     // <div>Posts</div>
@@ -60,13 +56,11 @@ const Textarea = styled(TextareaAutosize)`
             posts && posts.length>0 ? posts.map(( post,key) => {
                 
                 return(
-
                     <Grid item lg={3} sm={4} xs={12} key={String(key)}>
                         <Link style={{textDecoration: 'none', color: 'inherit'}} to={`details/${post._id}`}>
-                            <Post post={post}   />
+                            <Post post={post} />
                         </Link>
                     </Grid>
-                
                 )
             }):
             

@@ -52,6 +52,9 @@ const Textarea = styled(TextareaAutosize)`
         fetchData();
     },[category]);
 
+    const handleClick = ((e) =>{
+        console.log(e._id)
+    })
 
   return (
     // <div>Posts</div>
@@ -63,7 +66,7 @@ const Textarea = styled(TextareaAutosize)`
 
                     <Grid item lg={3} sm={4} xs={12} key={String(key)}>
                         <Link style={{textDecoration: 'none', color: 'inherit'}} to={`details/${post._id}`}>
-                            <Post post={post}   />
+                            <Post post={post} onClick ={ (e) => {handleClick(e)} } />
                         </Link>
                     </Grid>
                 
