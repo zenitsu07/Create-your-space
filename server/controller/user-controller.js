@@ -16,6 +16,7 @@ dotenv.config();//in orde to use env variables
 //SIGNUP API
 export const signupUser = async (request, response) =>{
 
+        console.log('singup in user controller')
     try {
         // const salt = await bcrypt.genSalt();
         // const hashedPassword = await bcrypt.hash(request.body.password, salt);
@@ -23,6 +24,7 @@ export const signupUser = async (request, response) =>{
         // bcrypt.hash()
 
         const user = { username: request.body.username, name: request.body.name, password: hashedPassword }
+        console.log(user);
 
         const newUser = new User(user);
         await newUser.save();
@@ -38,6 +40,7 @@ export const signupUser = async (request, response) =>{
 //LOGIN API with help of token JWT auth
 export const loginUser = async(request,response) => {
 
+    console.log('login controller')
     //not is json format convert using to JSON this user variable contains all values of user object found b User.finOne function in mongodb atlas
     let user = await User.findOne({ username: request.body.username });
     if(!user){
@@ -46,6 +49,7 @@ export const loginUser = async(request,response) => {
     //use try and catch method to handle errors if user exists in db bcoz response still depends on cloud database
     try{
         //use bcrypt.compare to compare given andsaved pasword
+        console.log(request.body.password)
         let match = await bcrypt.compare(request.body.password, user.password)
         
         //if passswords match then create a access toekn and refresh token with json Web Token JWT
@@ -55,8 +59,8 @@ export const loginUser = async(request,response) => {
             //jstsign(body,secret key) create usign cypto 
 
             const accessToken = jwt.sign(user.toJSON(), process.env.ACCESS_SECRET_KEY , {expiresIn: '15m'});
-            const refreshToken = jwt.sign(user.toJSON(), process.env.REFRESH_SECRET_KEY)
-            // console.log(accessToken, refreshToken)
+            const refreshToken = jwt.sign(user.toJSON(), process.env.REFRESH_SECRET_KEY, { expiresIn: '15d' })
+            console.log(accessToken, refreshToken)
             //we will create new access token with refresh token after 15m everytimes
 
             const newToken = new Token({ token: refreshToken})
