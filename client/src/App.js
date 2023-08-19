@@ -20,6 +20,7 @@ const PrivateRoute = ({isAuthenticated}, ...props) =>{
   ?<>
     <Header />
     <Outlet />
+    <Home />
   </>
   :
   //If not loggedin send user back to login route
