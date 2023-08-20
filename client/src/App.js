@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import {BrowserRouter, Routes, Route, Navigate, Outlet} from 'react-router-dom'
 
-import  { DataContext } from './context/DataProvider'
+import DataProvider from './context/DataProvider'
 
 import './App.css';
 import CreatePost from './components/create/CreatePost';
@@ -32,64 +32,55 @@ const PrivateRoute = ({isAuthenticated}, ...props) =>{
 function App(){
 
   const [isAuthenticated, isUserAuthenticated] = useState(false);
-
+ 
   return (
 
-          <BrowserRouter context = {DataContext}>
+          <DataProvider >
+            <BrowserRouter >
 
-            <div style = {{marginTop: 64}}>
-            
-              <Routes>
+              <div style = {{marginTop: 64}}>
 
-                  <Route path='/login' element = {<Login isUserAuthenticated = {isUserAuthenticated} /> } />
-                  
-                  {/* //send to privateRoute , Home path will redirect to PrivateRoute if loggedin else to '/login' path */}
-                  {/* <Route path = '/' element ={<PrivateRoute isAuthenticated = {isAuthenticated} />} >
-                    </Route>  If user Authenticated then user is sent to Outlook ie.e the child components below*/}
+                <Routes>
 
-                  <Route path='/' element = { 
-    
-                        <div>
-                          {/* using components to display while login still contain bugs */}
-                          <PrivateRoute isAuthenticated = {isAuthenticated} />
-                          {/* use for privateRouting when fixe errors in logging in and navigating  */}
-                          
-                        </div>
-                        
-                    } /> 
+                    <Route path='/login' element = {<Login isUserAuthenticated = {isUserAuthenticated} /> } />
+                    
+                    {/* //send to privateRoute , Home path will redirect to PrivateRoute if loggedin else to '/login' path */}
+                    {/* <Route path = '/' element ={<PrivateRoute isAuthenticated = {isAuthenticated} />} >
+                      </Route>  If user Authenticated then user is sent to Outlook ie.e the child components below*/}
 
-                    <Route path='/create' element = {
+                    <Route path='/' element = { <PrivateRoute isAuthenticated = {isAuthenticated} />} />
+
+                      <Route path ='/Home' element = {<Home />}/>
+
+                      <Route path='/create' element = {
+                          <>
+                            <Header />
+                            <CreatePost />
+                          </>
+                        }
+                      />
+                      
+                      <Route path = '/about'>
+                          <Route path='/about' element = {<About />} />
+                      </Route>
+
+                      <Route path='/contact' >
+                          <Route path='/contact' element={<Contact />} />
+                      </Route>
+
+                      {/* <Route path = '/create/categorytype' element = {
                         <>
                           <Header />
-                          <CreatePost />
+                            <CreatePost />
                         </>
                       }
-                    />
-                    
-                    <Route path = '/about'>
-                        <Route path='/about' element = {<About />} />
-                    </Route>
+                      /> */}
 
-                    <Route path='/contact' >
-                        <Route path='/contact' element={<Contact />} />
-                    </Route>
+                </Routes>
 
-                    {/* <Route path = '/create/categorytype' element = {
-                      <>
-                        <Header />
-                          <CreatePost />
-                      </>
-                    }
-                    /> */}
-
-                  
-                    
-
-              </Routes>
-
-            </div>
-          </BrowserRouter>
-    
+              </div>
+              </BrowserRouter>
+          </DataProvider>
   );
 
 }

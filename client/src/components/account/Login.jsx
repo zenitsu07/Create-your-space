@@ -71,15 +71,16 @@ const signupInitialValues = {
     password: '',
 };
 
-const Login = ({ isUserAuthenticated }) => {
+const Login = ({ isUserAuthenticated,...props}) => {
+
     const [login, setLogin] = useState(loginInitialValues);
     const [signup, setSignup] = useState(signupInitialValues);
     const [error, showError] = useState('');
     const [account, toggleAccount] = useState('login');
 
     const navigate = useNavigate();
-    const { setAccount } = useContext(DataContext);
-    
+    const { setUser } = useContext(DataContext);
+    // const { username, name} = acc;   
 
     const imageURL = 'https://www.sesta.it/wp-content/uploads/2021/03/logo-blog-sesta-trasparente.png';
 
@@ -103,14 +104,21 @@ const Login = ({ isUserAuthenticated }) => {
 
             sessionStorage.setItem('accessToken', `Bearer ${response.data.accessToken}`);
             sessionStorage.setItem('refreshToken', `Bearer ${response.data.refreshToken}`);
-            // setAccount({ name: response.data.name, username: response.data.username });
             
+            const user = {
+                name: response.data.name
+                ,username: response.data.username
+            }
+            setUser(user)
+            console.log(user)
             isUserAuthenticated(true)
             setLogin(loginInitialValues);
             navigate('/');
+
         } else {
             showError('Something went wrong! please try again later');
         }
+
     }
 
     const signupUser = async () => {

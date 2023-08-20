@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { AppBar, Toolbar,styled, Typography , Box, Avatar} from '@mui/material';
 import { Link } from 'react-router-dom';
+import { DataContext } from '../../context/DataProvider';
 // import logo from './createyourspace-high-resolution-logo-black-on-transparent-background.png'
 import logo from './createyourspace-high-resolution-logo-color-on-transparent-background.png'
 const Component = styled(AppBar)`
@@ -34,6 +35,7 @@ const Bar = styled(Avatar)`
 `;
 const Header = () => {
  
+    const {user} = useContext(DataContext)
   return (  
 
     <Component>
@@ -46,6 +48,7 @@ const Header = () => {
             <Link to="/about">ABOUT</Link>
             <Link to="/contact">CONTACT</Link>
             <Link to="/login">LOGOUT</Link>
+            <h4> {user.username}  </h4>
         
         </Container>
     </Component>

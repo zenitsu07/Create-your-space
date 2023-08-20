@@ -6,6 +6,7 @@ import { useNavigate, useLocation, Navigate } from 'react-router-dom';
 
 import { DataContext } from '../../context/DataProvider';
 import API from '../../service/api';
+import Home from '../home/Home';
 
 const Container = styled(Box)(({ theme }) => ({
     margin: '50px 100px',
@@ -60,7 +61,7 @@ const CreatePost = () => {
     const [post, setPost] = useState(initialPost);
     const [file,setFile] = useState()
 
-    const {setAccount} = useContext(DataContext);
+    const {user} = useContext(DataContext);
 
     const url =  post.picture ? post.picture: 'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
 
@@ -77,28 +78,36 @@ const CreatePost = () => {
                 // api call
                 const response = await API.uploadFile(data);
                 response.isSuccess === true? console.log("received upload"):console.log("failed to fetch");
+                
                 post.picture = response.data;
-                //changes
-                const updatedPost = { ...post, picture: response.data };
-                setPost(updatedPost);
+                // //changes
+                // const updatedPost = { ...post, picture: response.data };
+                // setPost(updatedPost);
 
             }
         }
 
         getImage();
-        // post.categories = location.search?.split('=')[1] || 'All';
+        post.categories = location.search?.split('=')[1] || 'All';
         // post.categories = 
-        // post.username = account.username;
+        post.username = user.username;
+        console.log(user.username)
 
     }, [file]);
 
     const savePost = async () =>{
 
+        //adding fields validation requirement
+        if(!post.title || !post.description ){
+            alert('Missing required fields')
+            return;
+        }
+
         const response =  await API.createPost(post);
         response.isSuccess=== true? console.log("received post upload"):console.log("failed to fetch");
                 
         if(response.isSuccess)
-            navigate('/');
+            navigate('/Home');
 
     }
 
@@ -140,9 +149,6 @@ const CreatePost = () => {
                 onChange={(e) => handleChange(e)}
 
             />
-<Textarea rowsmax = {1} placeholder='Add category' name = 'categories' />
-                
-            
         </Container>
   )
 }

@@ -35,9 +35,10 @@ const Categories = () => {
     <>
       {/* Lunked to categ ory page redirect so from url of image we can extract the category of the image*/}
       {/* append category to url */}
-        <Link to={`/create?category=${category }} ''}`} style={{ textDecoration: 'none' }}>
+        <Link to={`/create?category=All`} style={{ textDecoration: 'none' }}>
                 <StyledButton variant="contained">Create Blog</StyledButton>
-            </Link>
+        </Link>
+
         <Table>
           <TableHead>
             <TableRow>  
@@ -52,12 +53,13 @@ const Categories = () => {
           <TableBody>
            {
             categories.map( category => {
+
               return(
                 <TableRow key = { category.id }>
 
                   <TableCell>
 
-                      <StyledLink to={`create/${category.type}`}>
+                      <StyledLink to={`/create?category=${category.type}`}>
                         {category.type}
                       </StyledLink>
                     

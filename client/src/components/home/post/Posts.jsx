@@ -57,7 +57,7 @@ const Textarea = styled(TextareaAutosize)`
     // <div>Posts</div>
     <>
         {
-            posts && posts.length>0 ? posts.map(( post,key) => {
+            posts?.length ? posts.map(( post,key) => {
                 
                 return(
 
