@@ -14,6 +14,7 @@ dotenv.config();//in orde to use env variables
 
 //File functiwons -> handle callback functions used in route.ks
 //SIGNUP API
+
 export const signupUser = async (request, response) =>{
 
         console.log('singup in user controller')
@@ -98,48 +99,4 @@ export const logoutUser = async (request, response) => {
     
 }
 
-
-// function Usercontroller(req, res, next) {
-
-//     const authorization = req.headers.authorization;
-
-//     if (!authorization) {
-//         return res.status(401).json({
-//             message: 'No Authorization Header'
-//         })
-//     }
-
-//     try {
-//         const token = authorization.split('Bearer ')[1];
-//         if (!token) {
-//             return res.status(401).json({
-//                 message: 'Invalid Token Format'
-//             })
-//         }
-        
-//         const decode = jwt.verify(token, SECRET_KEY);
-//         req.user = decode
-//         // next()
-
-//     }catch (error) {
-//         if (error instanceof jwt.TokenExpiredError) {
-//             return res.status(401).json({
-//                 message: 'Session Expired',
-//                 error: error.message,
-//             })
-//         }
-//         if (error instanceof jwt.JsonWebTokenError || error instanceof TokenError) {
-//             return res.status(401).json({
-//                 message: 'Invalid Token',
-//                 error: error.message,
-//             })
-//         }
-//         res.status(500).json({
-//             message: 'Internal server Error',
-//             error: error.message,
-//             stack: error.stack
-//         });
-//     }
-// }
-
-// export default Usercontroller
+// For username zenitsu07 Storage {accessToken: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaW…5NTF9.5C4R9n0oFxwMBll7a2ImyhCuQOIUzm5x6qPPVK9a9Sc', refreshToken: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaW…wNTF9.aSOS5ijulOlfq53a5EkiIPJrBolN7B_Pb35E6jxgAFY', length: 2}
