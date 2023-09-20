@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { DataContext } from '../../context/DataProvider';
 // import logo from './createyourspace-high-resolution-logo-black-on-transparent-background.png'
 import logo from './createyourspace-high-resolution-logo-color-on-transparent-background.png'
+
 const Component = styled(AppBar)`
     background: #FFFFFF;
     color: black;

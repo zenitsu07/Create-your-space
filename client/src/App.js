@@ -1,25 +1,24 @@
 import React, { useContext } from 'react';
 import { useState } from 'react';
-import {BrowserRouter, Routes, Route, Navigate, Outlet} from 'react-router-dom'
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 
 import DataProvider from './context/DataProvider'
 
 import './App.css';
 import CreatePost from './components/create/CreatePost';
 import About from './components/about/About';
-import Contact from './components/contact/Contact';
+import Contact from './components/contact/Contact1';
 import Login from './components/account/Login';
 import Home from './components/home/Home';
 import Header from './components/header/Header';
-
-
+import DetailView from './components/details/DetailView';
+import Update from './components/create/Update';
 //PrivateRoute
 const PrivateRoute = ({isAuthenticated}, ...props) =>{
 
   return isAuthenticated
   ?<>
     <Header />
-    <Outlet />
     <Home />
   </>
   :
@@ -59,7 +58,15 @@ function App(){
                           </>
                         }
                       />
-                      
+
+                      <Route path='/details/:id' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
+                         <Route path='/details/:id' element={<DetailView />} />
+                      </Route>
+
+                      <Route path='/update/:id' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
+                          <Route path='/update/:id' element={<Update />} />
+                      </Route>
+
                       <Route path = '/about'>
                           <Route path='/about' element = {<About />} />
                       </Route>

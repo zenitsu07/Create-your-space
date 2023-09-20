@@ -2,11 +2,11 @@ import React, { useState, useEffect ,useContext} from 'react'
 
 import { styled, Box, TextareaAutosize, Button, InputBase, FormControl  } from '@mui/material';
 import { AddCircle as Add } from '@mui/icons-material';
-import { useNavigate, useLocation, Navigate } from 'react-router-dom';
+import { useNavigate, useLocation} from 'react-router-dom';
 
 import { DataContext } from '../../context/DataProvider';
 import API from '../../service/api';
-import Home from '../home/Home';
+// import Home from '../home/Home';
 
 const Container = styled(Box)(({ theme }) => ({
     margin: '50px 100px',
@@ -91,7 +91,7 @@ const CreatePost = () => {
         post.categories = location.search?.split('=')[1] || 'All';
         // post.categories = 
         post.username = user.username;
-        console.log(user.username)
+        console.log(post.username)
 
     }, [file]);
 

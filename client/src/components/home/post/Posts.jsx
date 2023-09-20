@@ -54,25 +54,27 @@ const Textarea = styled(TextareaAutosize)`
 
 
   return (
-    // <div>Posts</div>
     <>
         {
             posts?.length ? posts.map(( post,key) => {
-                
+                // console.log(post.id)
+                console.log(key)
+                const len = posts.length
                 return(
-
-                    <Grid item lg={3} sm={4} xs={12} key={String(key)}>
-                        <Link style={{textDecoration: 'none', color: 'inherit'}} to={`details/${post._id}`}>
+                    
+                    <Grid item lg={3} sm={4} xs={12} key={String( key)}>
+                        <Link style={{textDecoration: 'none', color: 'inherit'}} to={`/details/:${post.id}`}>
                             <Post post={post}   />
                         </Link>
                     </Grid>
                 
-                )
-            }):
+                )   
+            }).reverse():(
             
             <Box style={{color: '878787', margin: '30px 80px', fontSize: 18}}>
                 No data is available for selected category
             </Box>
+            )
         }
     </>
 

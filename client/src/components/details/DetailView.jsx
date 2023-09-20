@@ -4,18 +4,18 @@ import { Box, Typography, styled } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
-import { API } from '../../service/api';
+import API from '../../service/api';
 
 import { DataContext } from '../../context/DataProvider';
 
-// components
-import Comments from './comments/Comments';
-
 const Container = styled(Box)(({ theme }) => ({
+
     margin: '50px 100px',
+    
     [theme.breakpoints.down('md')]: {
         margin: 0
     },
+
 }));
 
 const Image = styled('img')({
@@ -74,13 +74,18 @@ const DetailView = () => {
     }, []);
 
     const deleteBlog = async () => {  
+        
         await API.deletePost(post._id);
         navigate('/')
+        
     }
 
     return (
+
         <Container>
+
             <Image src={post.picture || url} alt="post" />
+
             <Box style={{ float: 'right' }}>
                 {   
                     user.username === post.username && 
@@ -90,6 +95,7 @@ const DetailView = () => {
                     </>
                 }
             </Box>
+
             <Heading>{post.title}</Heading>
 
             <Author>

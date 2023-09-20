@@ -4,7 +4,8 @@ import axios from 'axios';
 import { APT_NOTIFICATION_MESSAGES ,SERVICE_URLS} from '../constants/config';
 import { getAccessToken ,getType} from '../utils/common-utils';
 
-const API_URL = 'http://localhost:8000'//using local host as baseULR to axiosInstance
+// const API_URL = 'http://localhost:8000'//using local host as baseULR to axiosInstance
+const API_URL = 'https://create-your-space-serverside.vercel.app'; // Update to the hosted URL
 
 //creating instanc with 1- baseurl, 2- timeout, 3- headersdefinin content-type
 const axiosInstance =  axios.create({
@@ -128,6 +129,8 @@ for(const [key,value] of Object.entries(SERVICE_URLS)){
                 authorization: getAccessToken(),
                 "Accept": "application/json, form-data", 
                 "Content-Type": "application/json",
+                // "Accept": "application/json",
+                // "Content-Type": "application/json",
             },
 
             // TYPE: getType(value,body),
