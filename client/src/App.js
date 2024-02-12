@@ -11,9 +11,9 @@ import Contact from './components/contact/Contact1';
 import Login from './components/account/Login';
 import Home from './components/home/Home';
 import Header from './components/header/Header';
-import DetailView from './components/details/DetailView';
-import Update from './components/create/Update';
+
 //PrivateRoute
+
 const PrivateRoute = ({isAuthenticated}, ...props) =>{
 
   return isAuthenticated
@@ -58,15 +58,7 @@ function App(){
                           </>
                         }
                       />
-
-                      <Route path='/details/:id' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
-                         <Route path='/details/:id' element={<DetailView />} />
-                      </Route>
-
-                      <Route path='/update/:id' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
-                          <Route path='/update/:id' element={<Update />} />
-                      </Route>
-
+                    
                       <Route path = '/about'>
                           <Route path='/about' element = {<About />} />
                       </Route>
@@ -75,13 +67,7 @@ function App(){
                           <Route path='/contact' element={<Contact />} />
                       </Route>
 
-                      {/* <Route path = '/create/categorytype' element = {
-                        <>
-                          <Header />
-                            <CreatePost />
-                        </>
-                      }
-                      /> */}
+                      
 
                 </Routes>
 
@@ -93,12 +79,8 @@ function App(){
 }
 
 export default App; 
-
-          {/* Once fixed login bugs uncomment below */
-                      /* <Route path = '/' element ={<PrivateRoute isAuthenticated = {isAuthenticated} />} >
-                    </Route>  */
-          }
-                    
-          {/* <Route path='/about' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
-            <Route path='/about' element={<About />} />
-          </Route> */}
+            
+{/* Once fixed login bugs uncomment below */ /* <Route path = '/' element ={<PrivateRoute isAuthenticated = {isAuthenticated} />} >  </Route>  */ }
+          
+{/* <Route path='/about' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >  <Route path='/about' element={<About />} /> </Route> */}
+{/* <Route path = '/create/categorytype' element = { <>     <Header /> <CreatePost /> </>} /> */}

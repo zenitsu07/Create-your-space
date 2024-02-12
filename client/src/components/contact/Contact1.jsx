@@ -55,38 +55,7 @@ const Contact = () => {
 
        
       
-        {/* <Typography variant="h4" gutterBottom>
-          Contact Us
-        </Typography>
-        <TextField
-          label="Name"
-          variant="outlined"
-          margin="normal"
-          fullWidth
-        />
-        <TextField
-          label="Email"
-          variant="outlined"
-          margin="normal"
-          fullWidth
-        />
-        <TextField
-          label="Message"
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          multiline
-          rows={4}
-        />
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          sx={{ mt: 2 }}
-        >
-          Send
-        </Button>
-         */}
+       
         </Box>
     );
 

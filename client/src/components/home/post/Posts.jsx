@@ -36,11 +36,13 @@ const Textarea = styled(TextareaAutosize)`
 
     const [posts,setPosts] = useState([]);
     const [searchParams] = useSearchParams();
+
     const category = searchParams.get('category')
     
     useEffect(() =>{
 
         const fetchData = async () =>{
+            
             const response  = await API.getAllPosts();
 
             if(response.isSuccess){
@@ -48,6 +50,7 @@ const Textarea = styled(TextareaAutosize)`
             }else{
                 console.log("error fetching")
             }
+        
         }
         fetchData();
     },[category]);

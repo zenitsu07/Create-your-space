@@ -4,8 +4,8 @@ import axios from 'axios';
 import { APT_NOTIFICATION_MESSAGES ,SERVICE_URLS} from '../constants/config';
 import { getAccessToken ,getType} from '../utils/common-utils';
 
-// const API_URL = 'http://localhost:8000'//using local host as baseULR to axiosInstance
-const API_URL = 'https://create-your-space-serverside.vercel.app'; // Update to the hosted URL
+const API_URL = 'http://localhost:8000'//using local host as baseULR to axiosInstance
+// const API_URL = 'https://create-your-space-serverside.vercel.app'; // Update to the hosted URL
 
 //creating instanc with 1- baseurl, 2- timeout, 3- headersdefinin content-type
 const axiosInstance =  axios.create({
@@ -69,15 +69,16 @@ const processResponse = (response) =>{
 }
 
 // /
-//if succes => return (isSuccess: true, data:object)
+//if success => return (isSuccess: true, data:object)
 //if failed=> return{ isFailure : true,  status:string, msg:String,code: int}
-//
 
 const processError = (error) =>{
 
     if(error.response){
-        //request macde and server responded with a status other than 200
+
+        //request made and server responded with a status other than 200
         console.log('Error in Response', error.toJSON())//to enable the transformation of an object's data for JavaScript Object Notation (JSON) serialization
+        
         return{
             isError: true,
             msg: APT_NOTIFICATION_MESSAGES.responseFailure,
@@ -85,13 +86,16 @@ const processError = (error) =>{
         }
     }
     else if(error.request) {
+
         //request sent but no reponse detected => connecting issues to dbms
         console.log('Error in Request', error.toJSON())//to enable the transformation of an object's data for JavaScript Object Notation (JSON) serialization
+        
         return{
             isError: true,
             msg: APT_NOTIFICATION_MESSAGES.requestFailure,
             code: ""
         }
+
     }else{
         //We have to debiug code => its triggered when code has an error
         console.log('Error in NETWORK', error.toJSON())//to enable the transformation of an object's data for JavaScript Object Notation (JSON) serialization
@@ -129,8 +133,7 @@ for(const [key,value] of Object.entries(SERVICE_URLS)){
                 authorization: getAccessToken(),
                 "Accept": "application/json, form-data", 
                 "Content-Type": "application/json",
-                // "Accept": "application/json",
-                // "Content-Type": "application/json",
+                
             },
 
             // TYPE: getType(value,body),

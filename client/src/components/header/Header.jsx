@@ -49,6 +49,7 @@ const Header = () => {
             <Link to="/about">ABOUT</Link>
             <Link to="/contact">CONTACT</Link>
             <Link to="/login">LOGOUT</Link>
+            {/* <Link to="/checkout">Subscribe</Link> */}
             <h4> {user.username}  </h4>
         
         </Container>
