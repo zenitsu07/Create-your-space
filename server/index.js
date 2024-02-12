@@ -15,15 +15,16 @@ const app = express();
 //app.use(path,handler function)
 
 
-// app.use(cors())
+app.use(cors())
 const HOST = process.env.HOST;
-const corsOptions = {
-    origin: ["http://localhost:3000", "https://create-your-space-serverside.vercel.app"],
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-  };
+// const corsOptions = {
+//     origin: ["http://localhost:3000", "https://create-your-space-serverside.vercel.app"],
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     credentials: true,
+//   };
   
-  app.use(cors(corsOptions)); // Use cors with the configured options
+//   app.use(cors(corsOptions)); // Use cors with the configured options
+
 //to handle invalid chars in url 
 app.use(bodyParser.json({extended:true}))
 app.use(bodyParser.urlencoded({extended:true}))
